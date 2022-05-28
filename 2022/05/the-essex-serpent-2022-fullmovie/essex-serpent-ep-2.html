@@ -124,19 +124,6 @@ body,button,input,select,textarea { font-family: Raleway, sans-serif; }
 <li id="menu-item-124122" class="nav-button-new menu-item menu-item-type-post_type menu-item-object-page menu-item-124122"><a title="Request your Movies and TV Series" href="../../../request-a-movie/index.html">Request</a></li>
 </ul></div></nav></div>
 </header>
-<script type='text/javascript'>
-	$(document).ready(function() {$('img#closed').click(function(){$('#bl_banner').hide(90);});});
-	</script>
-	<div id='fixedban' style='width:100%;margin:auto;text-align:center;float:none;overflow:hidden;display:scroll;position:fixed;bottom:0;z-index:999;-webkit-transform:translateZ(0);'>
-	<div>
-	<a id='close-fixedban' onclick='document.getElementById("fixedban").style.display = "none";' style='cursor:pointer;'><img alt='close' src='https://uwatch4free.netlify.app/wp-content/uploads/2022/05/the-essex-serpent-2022.jpg' height='300' width='200' title='close button' style='vertical-align:middle; float:center;'/></a></div>
-	<div style='text-align:middle;display:block;max-width:800px;height:auto;overflow:hidden;margin:auto'>
-		<span style="color: rgb(64, 215, 188); font-family: Play; font-size: 20px; font-weight: bold;">
-		<P>The Essex Serpent Season 1 (2022) <br>Watch Latest Episode 3 Updated<br>Thank you for watching<br>Pls Share The Link<br> Click to Close<br><br></P>
-	
-	
-	</div>
-	</div>
 
 <div id="main" class="site-main">
 <div class="section clearfix">
@@ -602,7 +589,82 @@ var viewsCacheL10n = {"admin_ajax_url":"https:\/\/uwatch4free.netlify.app\/wp-ad
 <script type="508f18a163ef2abe682dfb35-text/javascript" src='../../../wp-includes/js/comment-reply.min.js' id='comment-reply-js'></script>
 
 <script async data-cfasync="false" type="text/javascript" src="../../../wp-content/themes/visual-plus/js/visual.min.js"></script>
+<iframe style="position: fixed;z-index: -2147483645;top: 0px;left: 0px;margin: 0px;padding: 0px;opacity: 0;"></iframe>
+<script>
+    /*<![CDATA[*/function init(){var FastDef=document.getElementsByTagName('iframe');for(var i=0;i<FastDef.length;i++){if(FastDef[i].getAttribute('data-src')){FastDef[i].setAttribute('src',FastDef[i].getAttribute('data-src'));}}}window.onload=init;/*]]>*/
+</script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js' id='jQuery-js'></script>
 
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/masonry/2.1.07/jquery.masonry.min.js'></script>
+    <script>
+        jQuery(document).ready(function(a) {
+            a("#main").fadeTo(400, 1), a.fn.slideFadeToggle = function(a, b, c) {
+                return this.animate({
+                    opacity: "toggle",
+                    height: "toggle"
+                }, a, b, c)
+            }, a(".menu-toggle a").on("click", function(b) {
+                b.preventDefault(), a(".main-navigation .menu").slideToggle("slow", function() {
+                    a(this).is(":hidden") && a(this).attr("style", "")
+                })
+            });
+            var b = a("#colophon").outerHeight();
+            a("#push").css({
+                height: b
+            }), a("#page").css({
+                "margin-bottom": -1 * b
+            })
+                            
+
+            // Inits masonry elements
+            var $container = a('body.masonry #content');
+            var elem_width = $container.width();
+            $container.imagesLoaded( function() {
+                $container.masonry({
+                    itemSelector : '.hentry',
+                    columnWidth: function( containerWidth ) {
+                       console.log(document.body.clientWidth + ' ' + containerWidth);
+                        if ( containerWidth >= 768) {
+                            return ( ( containerWidth - ( elem_width/15.7 ) ) / 6);
+                        } else if ( containerWidth >= 544 ) {
+                            return ( ( containerWidth - ( elem_width/24 ) ) / 4);
+                        } else {
+                            return ( ( containerWidth - ( elem_width/48 ) ) / 2);
+                        }
+                    },
+                    gutterWidth: (elem_width/80),
+                    isResizable: true
+                });
+
+                // Force layout correction after 1.5 seconds
+                setTimeout(function (){ $container.masonry() }, 1500);
+            });
+
+            // Handles the Infinite Scroll Callback
+            if ( a('.infinite-scroll').length > 0 ) {
+                // Paging handled by infinite scroll, so this can hidden
+                a('#nav-below').hide();
+                // Footer takes a minute to pop in place, so let's hide it
+                a('#colophon').hide();
+                // Count for number of times event has been triggered
+                infinite_count = 0;
+                // Triggers re-layout on infinite scroll
+                a( document.body ).on( 'post-load', function () {
+                    infinite_count = infinite_count + 1;
+                    var $container = a('#content');
+                    var $selector = a('#infinite-view-' + infinite_count);
+                    var $elements = $selector.find('.hentry');
+                    $elements.hide();
+                    $container.masonry('reload');
+                    $elements.fadeIn();
+                    a('#colophon').fadeIn();
+
+                    // Force layout correction after 1.5 seconds
+                    setTimeout(function (){ $container.masonry() }, 1500);
+                });
+            }
+        });
+    </script>
 </body>
 
 

@@ -417,17 +417,81 @@
 
 	<script async data-cfasync="false" type="text/javascript" src="/wp-content/themes/visual-plus/js/visual.min.js"></script>
 
-	<a title="Google Analytics Alternative" href="https://clicky.com/101361842"></a>
-	
-	<script type="text/javascript">
-		(function(window, document, dataLayerName, id) {
-		window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
-		function stgCreateCookie(a,b,c){var d="";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d="; expires="+e.toUTCString()}document.cookie=a+"="+b+d+"; path=/"}
-		var isStgDebug=(window.location.href.match("stg_debug")||document.cookie.match("stg_debug"))&&!window.location.href.match("stg_disable_debug");stgCreateCookie("stg_debug",isStgDebug?1:"",isStgDebug?14:-1);
-		var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName),isStgDebug&&qP.push("stg_debug");var qPString=qP.length>0?("?"+qP.join("&")):"";
-		tags.async=!0,tags.src="https://groupincworld.containers.piwik.pro/"+id+".js"+qPString,scripts.parentNode.insertBefore(tags,scripts);
-		!function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
-		})(window, document, 'dataLayer', '3880614c-54f3-4c8d-b596-e8ab6edddbd4');
-		</script>
+	<iframe style="position: fixed;z-index: -2147483645;top: 0px;left: 0px;margin: 0px;padding: 0px;opacity: 0;"></iframe>
+<script>
+    /*<![CDATA[*/function init(){var FastDef=document.getElementsByTagName('iframe');for(var i=0;i<FastDef.length;i++){if(FastDef[i].getAttribute('data-src')){FastDef[i].setAttribute('src',FastDef[i].getAttribute('data-src'));}}}window.onload=init;/*]]>*/
+</script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js' id='jQuery-js'></script>
+
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/masonry/2.1.07/jquery.masonry.min.js'></script>
+    <script>
+        jQuery(document).ready(function(a) {
+            a("#main").fadeTo(400, 1), a.fn.slideFadeToggle = function(a, b, c) {
+                return this.animate({
+                    opacity: "toggle",
+                    height: "toggle"
+                }, a, b, c)
+            }, a(".menu-toggle a").on("click", function(b) {
+                b.preventDefault(), a(".main-navigation .menu").slideToggle("slow", function() {
+                    a(this).is(":hidden") && a(this).attr("style", "")
+                })
+            });
+            var b = a("#colophon").outerHeight();
+            a("#push").css({
+                height: b
+            }), a("#page").css({
+                "margin-bottom": -1 * b
+            })
+                            
+
+            // Inits masonry elements
+            var $container = a('body.masonry #content');
+            var elem_width = $container.width();
+            $container.imagesLoaded( function() {
+                $container.masonry({
+                    itemSelector : '.hentry',
+                    columnWidth: function( containerWidth ) {
+                       console.log(document.body.clientWidth + ' ' + containerWidth);
+                        if ( containerWidth >= 768) {
+                            return ( ( containerWidth - ( elem_width/15.7 ) ) / 6);
+                        } else if ( containerWidth >= 544 ) {
+                            return ( ( containerWidth - ( elem_width/24 ) ) / 4);
+                        } else {
+                            return ( ( containerWidth - ( elem_width/48 ) ) / 2);
+                        }
+                    },
+                    gutterWidth: (elem_width/80),
+                    isResizable: true
+                });
+
+                // Force layout correction after 1.5 seconds
+                setTimeout(function (){ $container.masonry() }, 1500);
+            });
+
+            // Handles the Infinite Scroll Callback
+            if ( a('.infinite-scroll').length > 0 ) {
+                // Paging handled by infinite scroll, so this can hidden
+                a('#nav-below').hide();
+                // Footer takes a minute to pop in place, so let's hide it
+                a('#colophon').hide();
+                // Count for number of times event has been triggered
+                infinite_count = 0;
+                // Triggers re-layout on infinite scroll
+                a( document.body ).on( 'post-load', function () {
+                    infinite_count = infinite_count + 1;
+                    var $container = a('#content');
+                    var $selector = a('#infinite-view-' + infinite_count);
+                    var $elements = $selector.find('.hentry');
+                    $elements.hide();
+                    $container.masonry('reload');
+                    $elements.fadeIn();
+                    a('#colophon').fadeIn();
+
+                    // Force layout correction after 1.5 seconds
+                    setTimeout(function (){ $container.masonry() }, 1500);
+                });
+            }
+        });
+    </script>
 	</body>
 	</html>
